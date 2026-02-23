@@ -1,0 +1,7 @@
+backup:
+  rclone_remote: "gdrive:CursorBackups/cursor-memory"
+  log_file: "./backup.log"
+  reminders_log_file: "./memory-reminders.log"
+  backup_interval_minutes: 30
+reminder:
+  cron_time: "17:30"

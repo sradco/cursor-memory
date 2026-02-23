@@ -1,0 +1,7 @@
+[Unit]
+Description=cursor-memory backup to Google Drive via rclone
+
+[Service]
+Type=oneshot
+ExecStart=%h/cursor-memory/bin/backup_to_drive.sh
+WorkingDirectory=%h/cursor-memory

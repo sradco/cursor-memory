@@ -1,0 +1,10 @@
+[Unit]
+Description=cursor-memory periodic backup timer
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

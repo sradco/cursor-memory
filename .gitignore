@@ -1,0 +1,16 @@
+# Personal project data — only templates and tooling are published
+PROJECTS/*/
+!PROJECTS/_index.md
+
+# Personal config (users create their own from config.example.yaml)
+config.yaml
+
+# Runtime logs
+backup.log
+memory-reminders.log
+
+# Active state files (personal)
+ACTIVE_PROJECT.md
+
+# Inbox captures (personal)
+INBOX/00-capture.md
