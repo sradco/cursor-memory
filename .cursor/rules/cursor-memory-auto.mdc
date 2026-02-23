@@ -1,0 +1,48 @@
+---
+description: Auto-manage cursor-memory projects and topics. Detects context, creates/switches projects and topics, and reminds to summarize at session end.
+alwaysApply: true
+---
+
+# cursor-memory Auto-Management
+
+The workspace has a `cursor-memory/` system for durable, topic-isolated context.
+
+## On Every Conversation Start
+
+1. Read `cursor-memory/ACTIVE_PROJECT.md` and the project's `ACTIVE_TOPIC.md`.
+2. If working on a known project+topic, load `overview.md`, `decisions.md`, and `open-questions.md` for context.
+
+## Auto-Detect and Create
+
+- If the user mentions a **new project** by name (or you infer one from the repo/folder being discussed), run:
+  ```bash
+  cursor-memory/bin/create_project.sh <slug>
+  cursor-memory/bin/set_active_project.sh <slug>
+  ```
+- If the user mentions a **new topic** (or the conversation clearly shifts to a distinct concern), run:
+  ```bash
+  cursor-memory/bin/create_topic.sh <project-slug> <topic-slug>
+  ```
+  This also sets it as the active topic.
+- If neither project nor topic exists yet, create both.
+- Derive slugs from context: lowercase, hyphen-separated, 2-4 words (e.g. `my-web-app`, `api-migration-v2`).
+- Confirm with the user: "I created project 'X' and topic 'Y' in cursor-memory."
+
+## Topic Switching
+
+- If the conversation shifts to a different concern under the same project, create or switch to the appropriate topic.
+- Say: "This looks like a different topic. I'll switch to '<topic-slug>'." Then run `set_active_topic.sh` or `create_topic.sh`.
+
+## End-of-Session
+
+When the user says "summarize", "save memory", "end of session", or similar:
+1. Update `overview.md` — scope, status, where we left off.
+2. Record new decisions in `decisions.md`.
+3. Update `open-questions.md` — add new, close resolved.
+4. Add timeline entry in `design-evolution.md` if design changed.
+5. Optionally create `conversations/YYYY-MM-DD-<slug>.md`.
+
+## Slug Rules
+
+- Lowercase, hyphen-separated, starts with a letter.
+- Examples: `my-web-app`, `alert-routing`, `ui-grouping`.
