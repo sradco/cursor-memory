@@ -199,6 +199,12 @@ create_topic.sh <project-slug> <topic-slug>:
 - Set project ACTIVE_TOPIC.md to this topic
 - Idempotent
 
+rename_topic.sh <project-slug> <old-topic-slug> <new-topic-slug>:
+- Rename topic directory
+- Update ACTIVE_TOPIC.md if it pointed to the old slug
+- Update heading references inside topic markdown files
+- Fails if old topic doesn't exist or new slug already exists
+
 set_active_project.sh <project-slug>:
 - Validate exists (or allow INBOX)
 - Write ACTIVE_PROJECT.md

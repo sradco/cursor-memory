@@ -7,10 +7,17 @@ alwaysApply: true
 
 The workspace has a `cursor-memory/` system for durable, topic-isolated context.
 
-## On Every Conversation Start
+## On Every Conversation Start (CRITICAL — do this BEFORE responding to the user)
 
-1. Read `cursor-memory/ACTIVE_PROJECT.md` and the project's `ACTIVE_TOPIC.md`.
-2. If working on a known project+topic, load `overview.md`, `decisions.md`, and `open-questions.md` for context.
+You MUST proactively perform these steps as your FIRST action in every new conversation, before answering the user's question:
+
+1. Read `cursor-memory/ACTIVE_PROJECT.md` to get the active project slug.
+2. Read `cursor-memory/PROJECTS/<project>/ACTIVE_TOPIC.md` to get the active topic slug.
+3. Read the topic's `overview.md` to understand scope, status, and where we left off.
+4. Silently absorb this context. Then briefly tell the user:
+   "Loaded memory for project '<project>', topic '<topic>'." before continuing with their request.
+
+If the active project is INBOX or no real topic is set, skip loading and proceed normally.
 
 ## Auto-Detect and Create
 
