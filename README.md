@@ -8,32 +8,35 @@ Cursor conversations are ephemeral. This system preserves context across session
 
 ## Quick Start
 
+### 1. One-time setup
+
 ```bash
 cd cursor-memory
-
-# First-time setup: create your personal config
-cp config.example.yaml config.yaml
-# Edit config.yaml with your rclone remote name and preferences
-
-# Create a project
-bin/create_project.sh my-project
-
-# Create a topic within the project
-bin/create_topic.sh my-project alert-routing
-
-# Set active project and topic
-bin/set_active_project.sh my-project
-bin/set_active_topic.sh alert-routing
-
-# Check everything is healthy
-bin/healthcheck.sh
+cp config.example.yaml config.yaml   # edit with your rclone remote name
+bin/healthcheck.sh                    # verify everything is in place
 ```
 
-In Cursor, load context with:
-> "Read @overview.md and @decisions.md for the alert-routing topic. Continue where we left off."
+### 2. Just use Cursor
 
-At the end of each session:
-> "Summarize and update topic memory."
+Projects and topics are managed automatically by the AI via the included Cursor rule (`.cursor/rules/cursor-memory-auto.mdc`). You don't need to run scripts manually.
+
+- **Start working.** Cursor detects the project and topic from context, creates them if needed, and sets them as active.
+- **Topic shifts.** If the conversation moves to a different concern, Cursor creates or switches to the right topic.
+- **End of session.** Just say:
+  > "Summarize and update topic memory."
+
+  Cursor updates `overview.md`, `decisions.md`, `open-questions.md`, and `design-evolution.md` automatically.
+
+### Manual scripts (optional)
+
+The `bin/` scripts are available if you prefer manual control or need to use them outside Cursor:
+
+```bash
+bin/create_project.sh my-project
+bin/create_topic.sh my-project alert-routing
+bin/set_active_project.sh my-project
+bin/set_active_topic.sh alert-routing
+```
 
 ## Backup Setup (Google Drive)
 
