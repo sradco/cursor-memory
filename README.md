@@ -50,22 +50,7 @@ Projects and topics are managed automatically by the AI via the included Cursor 
 
 ## Backup Setup (Google Drive)
 
-### Prerequisites
-
-1. Install rclone:
-   ```bash
-   sudo dnf install rclone
-   ```
-
-2. Configure a Google Drive remote named `gdrive`:
-   ```bash
-   rclone config
-   ```
-
-3. Verify access:
-   ```bash
-   rclone lsf gdrive:
-   ```
+If you ran `bin/setup.sh`, backup is already configured. The details below are for manual setup or reference.
 
 ### Install Automatic Backup
 
