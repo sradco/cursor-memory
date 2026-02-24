@@ -8,12 +8,15 @@ Cursor conversations are ephemeral. This system preserves context across session
 
 ## Prerequisites
 
-Install rclone (needed for Google Drive backup):
-
 ```bash
-sudo dnf install rclone       # Fedora/RHEL
+# rclone (needed for Google Drive backup)
+sudo dnf install rclone        # Fedora/RHEL
 sudo apt install rclone        # Ubuntu/Debian
 brew install rclone            # macOS
+
+# cronie (needed for daily reminder — Fedora only, usually pre-installed on Ubuntu/macOS)
+sudo dnf install cronie
+sudo systemctl enable --now crond
 ```
 
 ## Quick Start
@@ -83,12 +86,6 @@ bin/install_cron_reminder.sh
 ```
 
 Default time: 17:30 (configurable in `config.yaml` under `reminder.cron_time`).
-
-Requires `cronie`:
-```bash
-sudo dnf install cronie
-sudo systemctl enable --now crond
-```
 
 ### Uninstall
 
