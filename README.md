@@ -6,6 +6,16 @@ Durable, topic-isolated memory system for Cursor IDE projects. Structured Markdo
 
 Cursor conversations are ephemeral. This system preserves context across sessions by organizing summaries into **projects** and **topics**, each with standardized files for decisions, open questions, and design evolution.
 
+## Prerequisites
+
+Install rclone (needed for Google Drive backup):
+
+```bash
+sudo dnf install rclone       # Fedora/RHEL
+sudo apt install rclone        # Ubuntu/Debian
+brew install rclone            # macOS
+```
+
 ## Quick Start
 
 ### 1. One-time setup
