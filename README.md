@@ -20,7 +20,10 @@ The setup wizard will:
 - Detect existing rclone remotes or guide you through creating one
 - Let you pick the backup path on Google Drive
 - Optionally install the automatic backup timer and daily reminder
+- Install the Cursor rule into your workspace so the AI auto-manages projects/topics
 - Run a healthcheck to verify everything works
+
+**Important:** if `cursor-memory/` is a subfolder inside a larger workspace, the setup wizard asks for your workspace root and copies the Cursor rule there. Without this, the AI won't know about cursor-memory when you say "summarize".
 
 ### 2. Just use Cursor
 

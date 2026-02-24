@@ -118,7 +118,33 @@ if [[ "$INSTALL_CRON" =~ ^[Yy]$ ]]; then
   "$ROOT_DIR/bin/install_cron_reminder.sh"
 fi
 
-# Step 9: healthcheck
+# Step 9: install Cursor rule
+RULE_SRC="$ROOT_DIR/.cursor/rules/cursor-memory-auto.mdc"
+echo ""
+if [[ -f "$RULE_SRC" ]]; then
+  PARENT_DIR="$(cd "$ROOT_DIR/.." && pwd)"
+  DEFAULT_WORKSPACE="$PARENT_DIR"
+  echo "The Cursor rule needs to be installed in your workspace's .cursor/rules/ folder."
+  echo "This is the folder you open in Cursor (not cursor-memory/ itself)."
+  echo ""
+  read -rp "Cursor workspace root [$DEFAULT_WORKSPACE]: " WORKSPACE_DIR
+  WORKSPACE_DIR="${WORKSPACE_DIR:-$DEFAULT_WORKSPACE}"
+
+  if [[ -d "$WORKSPACE_DIR" ]]; then
+    RULE_DST="$WORKSPACE_DIR/.cursor/rules/cursor-memory-auto.mdc"
+    mkdir -p "$WORKSPACE_DIR/.cursor/rules"
+    cp "$RULE_SRC" "$RULE_DST"
+    echo "[OK] Cursor rule installed at $RULE_DST"
+  else
+    echo "[WARN] Directory '$WORKSPACE_DIR' does not exist. Skipping rule install."
+    echo "Manually copy: $RULE_SRC"
+    echo "  to: <your-workspace>/.cursor/rules/cursor-memory-auto.mdc"
+  fi
+else
+  echo "[WARN] Cursor rule source not found at $RULE_SRC"
+fi
+
+# Step 10: healthcheck
 echo ""
 echo "Running healthcheck..."
 echo ""
