@@ -166,6 +166,22 @@ Scripts read config from `$CURSOR_MEMORY_CONFIG` env var, defaulting to `./confi
 - [Troubleshooting](docs/TROUBLESHOOTING.md) — common issues and fixes
 - [Naming](docs/NAMING.md) — slug rules and file naming conventions
 
+## Complementary Tools
+
+cursor-memory handles **durable project context** (decisions, status, open questions). It works alongside — not instead of — Cursor's native features:
+
+| Layer | Tool | What it does |
+|-------|------|-------------|
+| **Behavioral rules** | `.cursor/rules/*.mdc` | Tell the AI *how* to behave (coding standards, workflows) |
+| **Reusable procedures** | `.cursor/skills/` | Teach the AI *how to do* specific tasks |
+| **Project memory** | `cursor-memory/` | Remember *what happened* across sessions |
+| **Chat history** | `@previous chats` | Reference recent conversations (local only, not durable) |
+
+Use all of them together:
+- **Rules** for conventions that rarely change.
+- **Skills** for repeatable procedures (run tests, deploy, bootstrap context).
+- **cursor-memory** for evolving project knowledge that must survive across machines.
+
 ## Fedora-Specific Notes
 
 - **systemd user timers** run while you're logged in. For laptop use this is fine. If you need timers to run when logged out: `loginctl enable-linger $USER`.
