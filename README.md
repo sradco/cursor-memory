@@ -36,16 +36,7 @@ Projects and topics are managed automatically by the AI via the included Cursor 
 
   Cursor updates `overview.md`, `decisions.md`, `open-questions.md`, and `design-evolution.md` automatically.
 
-### Manual scripts (optional)
-
-The `bin/` scripts are available if you prefer manual control or need to use them outside Cursor:
-
-```bash
-bin/create_project.sh my-project
-bin/create_topic.sh my-project alert-routing
-bin/set_active_project.sh my-project
-bin/set_active_topic.sh alert-routing
-```
+> **Note:** `bin/setup.sh` handles everything — rclone configuration, backup timer, and cron reminder. The sections below are reference for manual setup or customization.
 
 ## Backup Setup (Google Drive)
 
@@ -165,6 +156,19 @@ Scripts read config from `$CURSOR_MEMORY_CONFIG` env var, defaulting to `./confi
 - [Restore](docs/RESTORE.md) — new laptop setup steps
 - [Troubleshooting](docs/TROUBLESHOOTING.md) — common issues and fixes
 - [Naming](docs/NAMING.md) — slug rules and file naming conventions
+
+## Manual Scripts (Optional)
+
+The `bin/` scripts are available if you prefer manual control or need to use them outside Cursor:
+
+```bash
+bin/create_project.sh my-project
+bin/create_topic.sh my-project alert-routing
+bin/set_active_project.sh my-project
+bin/set_active_topic.sh alert-routing
+bin/rename_topic.sh my-project old-name new-name
+bin/healthcheck.sh
+```
 
 ## Complementary Tools
 
