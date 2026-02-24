@@ -12,42 +12,22 @@ sudo dnf install rclone    # Fedora
 curl https://rclone.org/install.sh | sudo bash
 ```
 
-### 2. Configure Google Drive Remote
+### 2. Clone the repo
 
 ```bash
-rclone config
+git clone https://github.com/sradco/cursor-memory.git
+cd cursor-memory
 ```
 
-Create a remote named `gdrive` of type `drive`. Follow the interactive prompts to authenticate.
-
-Verify:
-```bash
-rclone lsf gdrive:CursorBackups/cursor-memory
-```
-
-### 3. Create the cursor-memory Folder
+### 3. Run setup (configures rclone remote, creates config.yaml)
 
 ```bash
-mkdir -p ~/cursor-memory
-cd ~/cursor-memory
+bin/setup.sh
 ```
 
-Or clone the repo if cursor-memory is tracked in git.
+The wizard will detect existing rclone remotes or guide you through creating one.
 
-### 4. Create Minimal Config
-
-Create `config.yaml` (or copy from `config.example.yaml`):
-```yaml
-backup:
-  rclone_remote: "gdrive:CursorBackups/cursor-memory"
-  log_file: "./backup.log"
-  reminders_log_file: "./memory-reminders.log"
-  backup_interval_minutes: 30
-reminder:
-  cron_time: "17:30"
-```
-
-### 5. Run Restore
+### 4. Run Restore
 
 ```bash
 bin/restore_from_drive.sh
@@ -55,17 +35,16 @@ bin/restore_from_drive.sh
 
 This syncs all files from Google Drive to the local folder.
 
-### 6. Reinstall Automation
-
-```bash
-bin/install_systemd_backup_timer.sh
-bin/install_cron_reminder.sh
-```
-
-### 7. Verify
+### 5. Verify
 
 ```bash
 bin/healthcheck.sh
+```
+
+Note: if you skipped the backup timer and cron reminder during `bin/setup.sh`, install them now:
+```bash
+bin/install_systemd_backup_timer.sh
+bin/install_cron_reminder.sh
 ```
 
 ## Verification Checklist

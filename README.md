@@ -12,9 +12,15 @@ Cursor conversations are ephemeral. This system preserves context across session
 
 ```bash
 cd cursor-memory
-cp config.example.yaml config.yaml   # edit with your rclone remote name
-bin/healthcheck.sh                    # verify everything is in place
+bin/setup.sh
 ```
+
+The setup wizard will:
+- Create `config.yaml` from the example
+- Detect existing rclone remotes or guide you through creating one
+- Let you pick the backup path on Google Drive
+- Optionally install the automatic backup timer and daily reminder
+- Run a healthcheck to verify everything works
 
 ### 2. Just use Cursor
 
